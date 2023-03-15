@@ -10,12 +10,22 @@
         </router-link> -->
         <li>
           <h3>Presentes</h3>
+
+          <div class="icon">
+            <giftSvg color="#85B6FF" />
+          </div>
         </li>
         <li>
           <h3>Pix</h3>
+          <div class="icon">
+            <pixSvg color="#85B6FF" />
+          </div>
         </li>
         <li>
           <h3>Messagens</h3>
+          <div class="icon">
+            <messageSvg color="#85B6FF" />
+          </div>
         </li>
       </ul>
     </nav>
@@ -23,6 +33,9 @@
 </template>
 
 <script setup lang="ts">
+import giftSvg from '@/components/icones/gift.vue'
+import pixSvg from '@/components/icones/pix.vue'
+import messageSvg from '@/components/icones/message.vue'
 defineProps({
   open: Boolean,
 })
@@ -58,15 +71,22 @@ defineProps({
 }
 .menuContainer nav ul li {
   height: 50px;
-  display: flex;
-  align-items: center;
   width: 100%;
-  padding: 5px 5px 5px 30px;
+  padding: 5px 30px;
   margin: 0px auto;
   color: var(--main);
   font-weight: bold;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f4f8f7;
 }
+
+.menuContainer nav ul li .icon {
+  width: 30px;
+}
+
 .menuContainer nav ul li h3 {
   font-size: 16px;
   font-weight: bold;

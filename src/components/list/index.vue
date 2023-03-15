@@ -1,26 +1,38 @@
 <template>
   <section class="headerList">
     <h2>lista</h2>
-    <button>Filtro</button>
+    <button>
+      <filterSvg color="#85B6FF" />
+    </button>
   </section>
   <div class="containerList">
     <section>
       <div
         v-for="{ id, name, active } in list"
         :key="id"
-        :class="active ? 'selectGift success' : 'selectGift'"
+        :class="active ? 'selectGift success divSucess' : 'selectGift'"
+        @click="selectGift(id)"
       >
         <p>{{ name }}</p>
-        <div>icone</div>
+        <div class="giftIcon">
+          <gift class="svg" color="#85B6FF"  />
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script lang="ts" setup>
+import filterSvg from '../icones/filter.vue'
+import gift from '../icones/gift.vue';
 import { ref } from 'vue'
+interface Itens {
+  name: string,
+  id: number,
+  active: boolean
+}
 
-const list = ref([
+const list = ref<Itens[]>([
   {
     name: 'Tv',
     id: 1,
@@ -42,6 +54,19 @@ const list = ref([
     active: false,
   },
 ])
+
+const selectGift = (id: number) => {
+
+  const newList = list.value.map(item => {
+    if(id == item.id) {
+      item.active = !item.active
+    }
+    return item
+  })
+
+  console.log(newList)
+
+}
 </script>
 
 <style scoped>
@@ -49,6 +74,12 @@ const list = ref([
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.headerList button {
+  width: 35px;
+  background-color: #ff000000;
+  border: none;
 }
 
 .containerList {
@@ -77,6 +108,7 @@ const list = ref([
   border-radius: 5px 5px 0 0;
   border-bottom: 1px solid #71a9dd;
   margin: 20px 0;
+  transition: .1s ease-in-out;
 }
 
 p {
@@ -93,5 +125,17 @@ h2 {
   /* font-weight: 500; */
   /* line-height: 44px; */
   color: #71a9dd;
+}
+
+.divSucess {
+  border-bottom: initial;
+  border-radius: 5px;
+}
+
+.giftIcon {
+  
+}
+.giftIcon .svg {
+  /* width: 20px; */
 }
 </style>

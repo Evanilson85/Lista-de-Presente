@@ -1,27 +1,36 @@
 <template>
   <div class="containerBox">
-    <div class="boxContainer active" ref="gift" @click="changeItens('gift')">Presente</div>
-    <div class="boxContainer" ref="pix" @click="changeItens('pix')">PIX</div>
+    <div class="boxContainer active" ref="gift" @click="changeItens('gift')">
+      Presente <giftSVG class="svg" :color="valueCurrentActive === 'gift' ? '#fff' : '#85B6FF'" />
+    </div>
+    <div class="boxContainer" ref="pix" @click="changeItens('pix')">PIX <pixSVG class="svg" /></div>
   </div>
+  <!-- <modal  title="teste" body="tesdsad" /> -->
 </template>
 
 <script setup lang="ts">
+import giftSVG from '../icones/gift.vue'
+import pixSVG from '../icones/pix.vue'
+import modal from '@/components/modal/index.vue'
 import { ref } from 'vue'
 
 const gift = ref<Object>('gift')
 const pix = ref<Object>('pix')
+const valueCurrentActive = ref<string>('')
 
 const changeItens = (value: string): any => {
   const itemGift = gift.value as HTMLDivElement
   const itemPix = pix.value as HTMLDivElement
-  if(value === 'gift') {
+
+  valueCurrentActive.value = value
+
+  if (value === 'gift') {
     itemGift.classList.add('active')
     itemPix.classList.remove('active')
   } else {
     itemPix.classList.add('active')
     itemGift.classList.remove('active')
   }
-
 }
 </script>
 
@@ -54,5 +63,10 @@ const changeItens = (value: string): any => {
 .active {
   background-color: var(--main);
   color: var(--colorWhite);
+}
+
+.svg {
+  width: 20px;
+  margin: 0px 0 0 11px;
 }
 </style>

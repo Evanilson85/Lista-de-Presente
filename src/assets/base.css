@@ -97,6 +97,7 @@ h5 {
   background-color: var(--backgroundSuccess);
   color: var(--textSuccess);
   border-color: var(--borderSuccess);
+  border: 1px solid var(--borderSuccess);
 }
 
 /* body {
