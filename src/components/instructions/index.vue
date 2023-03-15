@@ -15,8 +15,6 @@
   </div>
 </template>
 
-<script></script>
-
 <style scoped>
 .containerInstruction {
   background-color: var(--colorWhite);
@@ -28,9 +26,9 @@
 h2 {
   margin: 20px 0;
   font-size: 26px;
-    /* font-weight: 500; */
-    /* line-height: 44px; */
-    color: #71a9dd;
+  /* font-weight: 500; */
+  /* line-height: 44px; */
+  color: #71a9dd;
 }
 
 p {
