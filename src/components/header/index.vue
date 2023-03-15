@@ -1,26 +1,24 @@
 <template>
   <div class="header">
-   <div class="containerHeader">
-    <h1>Lista de Presente dos Noivos</h1>
+    <div class="containerHeader">
+      <h1>Lista de Presente dos Noivos</h1>
 
-    <Burguer @changeMenu='changeMenuValue' />
-   </div>
-
+      <Burguer @changeMenu="changeMenuValue" />
+    </div>
   </div>
-  <Menu :open='valueCheckedMenu' />
+  <Menu :open="valueCheckedMenu" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 import Burguer from './burguer/index.vue'
-import Menu  from './menu/index.vue'
+import Menu from './menu/index.vue'
 
 let valueCheckedMenu = ref(false)
 
 const changeMenuValue = (value: boolean) => {
-    valueCheckedMenu.value = value
+  valueCheckedMenu.value = value
 }
-
 </script>
 
 <style scoped>
@@ -36,7 +34,7 @@ const changeMenuValue = (value: boolean) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding: 5px 20px;
 }
 
 .header h1 {

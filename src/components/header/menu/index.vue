@@ -31,6 +31,7 @@ defineProps({
 <style scoped>
 .menuContainer {
   height: calc(100vh - 70px);
+  height: calc(100svh - 70px);
   width: 70%;
   position: fixed;
   background-color: var(--colorWhite);
