@@ -17,21 +17,21 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
 export default {
   name: 'Modal',
   setup() {
-    const show = ref(false);
+    const show = ref(false)
 
     function close() {
-      show.value = false;
+      show.value = false
     }
 
     return {
       show,
       close,
-    };
+    }
   },
   props: {
     title: {
@@ -43,7 +43,7 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>
 
 <style>

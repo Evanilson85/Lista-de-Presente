@@ -15,7 +15,7 @@
       >
         <p>{{ name }}</p>
         <div class="giftIcon">
-          <gift class="svg" color="#85B6FF"  />
+          <gift class="svg" color="#85B6FF" />
         </div>
       </div>
     </section>
@@ -24,11 +24,11 @@
 
 <script lang="ts" setup>
 import filterSvg from '../icones/filter.vue'
-import gift from '../icones/gift.vue';
+import gift from '../icones/gift.vue'
 import { ref } from 'vue'
 interface Itens {
-  name: string,
-  id: number,
+  name: string
+  id: number
   active: boolean
 }
 
@@ -56,16 +56,14 @@ const list = ref<Itens[]>([
 ])
 
 const selectGift = (id: number) => {
-
-  const newList = list.value.map(item => {
-    if(id == item.id) {
+  const newList = list.value.map((item) => {
+    if (id == item.id) {
       item.active = !item.active
     }
     return item
   })
 
   console.log(newList)
-
 }
 </script>
 
@@ -108,7 +106,7 @@ const selectGift = (id: number) => {
   border-radius: 5px 5px 0 0;
   border-bottom: 1px solid #71a9dd;
   margin: 20px 0;
-  transition: .1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 p {
@@ -133,7 +131,6 @@ h2 {
 }
 
 .giftIcon {
-  
 }
 .giftIcon .svg {
   /* width: 20px; */
