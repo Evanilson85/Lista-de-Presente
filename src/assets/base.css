@@ -85,6 +85,20 @@ h5 {
   padding: 0%;
 }
 
+.containerDefault {
+  background-color: var(--colorWhite);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 0;
+  /* box-shadow: 0px 0px 1px #71a9dd; */
+}
+
+.success {
+  background-color: var(--backgroundSuccess);
+  color: var(--textSuccess);
+  border-color: var(--borderSuccess);
+}
+
 /* body {
   min-height: 100vh;
   color: var(--color-text);
