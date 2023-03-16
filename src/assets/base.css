@@ -73,6 +73,7 @@ body {
   box-sizing: border-box;
   text-decoration: none;
   background-color: var(--container);
+  background-color: var(--body);
   min-height: 100vh;
 }
 

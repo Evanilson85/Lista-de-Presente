@@ -1,11 +1,4 @@
 <template>
-  <!-- <section class="headerList">
-    <h2></h2>
-    <button>
-      <filterSvg color="#85B6FF" />
-    </button>
-  </section> -->
-  <!-- <Button label="Submit" /> -->
   <div class="containerList">
     <div class="dflex">
       <hr />
@@ -21,8 +14,8 @@
       >
         <p>{{ name }}</p>
         <div class="giftIcon">
-          <giftOpen class="svg" color="#85B6FF" v-if="!active" />
-          <gift class="svg" color="#FF9900" v-else />
+          <GiftOpen class="svg" color="#85B6FF" v-if="!active" />
+          <Gift class="svg" color="#FF9900" v-else />
         </div>
       </div>
     </section>
@@ -31,11 +24,12 @@
 
 <script lang="ts" setup>
 // import { Button } from 'primevue/button';
-import Button from 'primevue/button'
-
-import giftOpen from '../icones/giftOpen.vue'
-import gift from '../icones/gift.vue'
+// import Button from 'primevue/button'
+import { useToast } from 'vue-toastification'
+import GiftOpen from '../icones/giftOpen.vue'
+import Gift from '../icones/gift.vue'
 import { ref } from 'vue'
+
 interface Itens {
   name: string
   id: number
@@ -65,10 +59,17 @@ const list = ref<Itens[]>([
   },
 ])
 
+const toast = useToast()
+
 const selectGift = (id: number) => {
   const newList = list.value.map((item) => {
     if (id == item.id) {
       item.active = !item.active
+      if(item.active) {
+        toast.success(`${item.name} selecionado`, {
+        timeout: 2000,
+      })
+      }
     }
     return item
   })
@@ -85,29 +86,16 @@ const selectGift = (id: number) => {
   margin-bottom: 25px;
 }
 
-/* .selectGift {
-  align-items: center;
-  justify-content: space-between;
-  background: #f4f8f7;
-  display: flex;
-  height: 50px;
-  padding: 0 20px;
-  border-radius: 5px 5px 0 0;
-  border-bottom: 1px solid #71a9dd;
-} */
 .selectGift {
   align-items: center;
   justify-content: space-between;
-  /* background: #71a9dd; */
   display: flex;
   height: 50px;
   padding: 0 20px;
   border-radius: 5px 5px 0 0;
   border-bottom: 1px solid var(--textList);
-
   margin: 20px 0;
   transition: 0.1s ease-in-out;
-
   border: none;
   background: #f4f8f7;
   border: none;
@@ -116,7 +104,6 @@ const selectGift = (id: number) => {
 p {
   color: var(--textSuccess);
   font-weight: 600;
-  /* font-size: 16px; */
   line-height: 27px;
   font-size: 1.1rem;
 }
@@ -130,8 +117,6 @@ p {
 h2 {
   margin: 20px 0;
   font-size: 1rem;
-  /* font-weight: 500; */
-  /* line-height: 44px; */
   color: #71a9dd;
 }
 
@@ -140,16 +125,9 @@ h2 {
   border-radius: 5px;
 }
 
-.giftIcon {
-}
-.giftIcon .svg {
-  /* width: 20px; */
-}
-
 hr {
   flex: 1;
   margin: 0px 10px;
-
   height: 1px;
   border: none;
   background: #71a9dd;
