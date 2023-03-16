@@ -1,86 +1,28 @@
 <template>
-  <div class="modal-wrapper" v-if="show">
-    <div class="modal-mask" @click="close"></div>
-    <transition name="modal">
-      <div class="modal-container">
-        <div class="modal-header">
-          <h3>{{ title }}</h3>
-          <button @click="close">X</button>
-        </div>
-        <div class="modal-body">
-          <p>{{ body }}</p>
-        </div>
-      </div>
-    </transition>
+  <div class="card flex justify-content-center">
+    <Button label="Show" icon="pi pi-external-link" @click="visible = true" />
+    <Dialog
+      v-model:visible="visible"
+      modal
+      header="Header"
+      :style="{ width: '50vw' }"
+      :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
+    >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </Dialog>
   </div>
-  <button @click="show = !show">Abrir Modal</button>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import Dialog from 'primevue/dialog'
+import Button from 'primevue/button'
 import { ref } from 'vue'
 
-export default {
-  name: 'Modal',
-  setup() {
-    const show = ref(false)
-
-    function close() {
-      show.value = false
-    }
-
-    return {
-      show,
-      close,
-    }
-  },
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    body: {
-      type: String,
-      required: true,
-    },
-  },
-}
+const visible = ref(false)
 </script>
-
-<style>
-.modal-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-mask {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.modal-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.3s;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-</style>

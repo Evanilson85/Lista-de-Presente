@@ -3,9 +3,11 @@
     <div class="boxContainer active" ref="gift" @click="changeItens('gift')">
       Presente <giftSVG class="svg" :color="valueCurrentActive === 'gift' ? '#fff' : '#85B6FF'" />
     </div>
-    <div class="boxContainer" ref="pix" @click="changeItens('pix')">PIX <pixSVG class="svg" /></div>
+    <div class="boxContainer" ref="pix" @click="changeItens('pix')">
+      PIX <pixSVG :color="valueCurrentActive === 'pix' ? '#fff' : '#4ECB71'" class="svg" />
+    </div>
   </div>
-  <!-- <modal  title="teste" body="tesdsad" /> -->
+  <!-- <modal /> -->
 </template>
 
 <script setup lang="ts">
@@ -16,7 +18,7 @@ import { ref } from 'vue'
 
 const gift = ref<Object>('gift')
 const pix = ref<Object>('pix')
-const valueCurrentActive = ref<string>('')
+const valueCurrentActive = ref<string>('gift')
 
 const changeItens = (value: string): any => {
   const itemGift = gift.value as HTMLDivElement
@@ -66,7 +68,7 @@ const changeItens = (value: string): any => {
 }
 
 .svg {
-  width: 20px;
+  /* width: 20px; */
   margin: 0px 0 0 11px;
 }
 </style>

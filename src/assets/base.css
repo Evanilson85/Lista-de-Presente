@@ -94,10 +94,15 @@ h5 {
 }
 
 .success {
-  background-color: var(--backgroundSuccess);
-  color: var(--textSuccess);
-  border-color: var(--borderSuccess);
-  border: 1px solid var(--borderSuccess);
+  background-color: var(--backgroundSuccess) !important;
+  color: var(--textSuccess) !important;
+  border-color: var(--borderSuccess) !important;
+  /* border: 1px solid var(--borderSuccess); */
+}
+
+.dflex {
+  display: flex;
+  align-items: center;
 }
 
 /* body {

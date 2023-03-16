@@ -1,11 +1,17 @@
 <template>
-  <section class="headerList">
-    <h2>lista</h2>
+  <!-- <section class="headerList">
+    <h2></h2>
     <button>
       <filterSvg color="#85B6FF" />
     </button>
-  </section>
+  </section> -->
+  <!-- <Button label="Submit" /> -->
   <div class="containerList">
+    <div class="dflex">
+      <hr />
+      <h2>Eletrodomestico</h2>
+      <hr />
+    </div>
     <section>
       <div
         v-for="{ id, name, active } in list"
@@ -15,7 +21,8 @@
       >
         <p>{{ name }}</p>
         <div class="giftIcon">
-          <gift class="svg" color="#85B6FF" />
+          <giftOpen class="svg" color="#85B6FF" v-if="!active" />
+          <gift class="svg" color="#FF9900" v-else />
         </div>
       </div>
     </section>
@@ -23,7 +30,10 @@
 </template>
 
 <script lang="ts" setup>
-import filterSvg from '../icones/filter.vue'
+// import { Button } from 'primevue/button';
+import Button from 'primevue/button'
+
+import giftOpen from '../icones/giftOpen.vue'
 import gift from '../icones/gift.vue'
 import { ref } from 'vue'
 interface Itens {
@@ -68,22 +78,11 @@ const selectGift = (id: number) => {
 </script>
 
 <style scoped>
-.headerList {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.headerList button {
-  width: 35px;
-  background-color: #ff000000;
-  border: none;
-}
-
 .containerList {
   background: #fff;
   padding: 4px 5px;
   border-radius: 5px;
+  margin-bottom: 25px;
 }
 
 /* .selectGift {
@@ -104,22 +103,33 @@ const selectGift = (id: number) => {
   height: 50px;
   padding: 0 20px;
   border-radius: 5px 5px 0 0;
-  border-bottom: 1px solid #71a9dd;
+  border-bottom: 1px solid var(--textList);
+
   margin: 20px 0;
   transition: 0.1s ease-in-out;
+
+  border: none;
+  background: #f4f8f7;
+  border: none;
 }
 
 p {
-  color: #777e8a;
-  font-weight: 400;
+  color: var(--textSuccess);
+  font-weight: 600;
   /* font-size: 16px; */
   line-height: 27px;
   font-size: 1.1rem;
 }
 
+.selectGift:not(.success) p {
+  color: #777e8a;
+  color: #dc3545;
+  color: var(--textList);
+}
+
 h2 {
   margin: 20px 0;
-  font-size: 26px;
+  font-size: 1rem;
   /* font-weight: 500; */
   /* line-height: 44px; */
   color: #71a9dd;
@@ -134,5 +144,14 @@ h2 {
 }
 .giftIcon .svg {
   /* width: 20px; */
+}
+
+hr {
+  flex: 1;
+  margin: 0px 10px;
+
+  height: 1px;
+  border: none;
+  background: #71a9dd;
 }
 </style>
