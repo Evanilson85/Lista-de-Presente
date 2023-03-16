@@ -29,6 +29,7 @@ import { useToast } from 'vue-toastification'
 import GiftOpen from '../icones/giftOpen.vue'
 import Gift from '../icones/gift.vue'
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 
 interface Itens {
   name: string
@@ -36,11 +37,13 @@ interface Itens {
   active: boolean
 }
 
+const store = useStore()
+
 const list = ref<Itens[]>([
   {
     name: 'Tv',
     id: 1,
-    active: true,
+    active: false,
   },
   {
     name: 'Celular',
@@ -65,10 +68,17 @@ const selectGift = (id: number) => {
   const newList = list.value.map((item) => {
     if (id == item.id) {
       item.active = !item.active
-      if(item.active) {
+
+      const filter = store.getters.getListCheck.filter((element: any) => element.id !== item.id)
+
+      if (item.active) {
         toast.success(`${item.name} selecionado`, {
-        timeout: 2000,
-      })
+          timeout: 2000,
+        })
+        store.commit('setListCheck', [...store.getters.getListCheck, item])
+        console.log(store.getters.getListCheck, 'dsad')
+      } else {
+        store.commit('setListCheck', filter)
       }
     }
     return item
