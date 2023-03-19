@@ -1,11 +1,13 @@
 <template>
   <div class="card flex justify-content-center">
-    <Button label="Show" icon="pi pi-external-link" @click="visible = true" />
+    <!-- <Button label="Show" icon="pi pi-external-link" @click="visible = true" /> -->
     <Dialog
-      v-model:visible="visible"
+      :visible="visible"
       modal
+      :reject='false'
       header="Header"
-      :style="{ width: '50vw' }"
+      :closeOnEscape="true"
+      :style="{ width: '50vw  ' }"
       :breakpoints="{ '960px': '75vw', '641px': '100vw' }"
     >
       <p>
@@ -24,5 +26,19 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import { ref } from 'vue'
 
-const visible = ref(false)
+// const visible = ref(false)
+defineProps({
+  visible: {
+    type: Boolean,
+    default: true,
+    requerid: false,
+  },
+})
 </script>
+
+<style scoped>
+:deep(.p-dialog .p-dialog-titlebar-icons)  {
+  display: none !important;
+  background-color: red;
+}
+</style>

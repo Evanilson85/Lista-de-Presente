@@ -7,13 +7,12 @@
       PIX <pixSVG :color="valueCurrentActive === 'pix' ? '#fff' : '#4ECB71'" class="svg" />
     </div>
   </div>
-  <!-- <modal /> -->
 </template>
 
 <script setup lang="ts">
 import giftSVG from '../icones/gift.vue'
 import pixSVG from '../icones/pix.vue'
-import modal from '@/components/modal/index.vue'
+
 import { ref } from 'vue'
 
 const gift = ref<Object>('gift')

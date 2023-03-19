@@ -1,32 +1,44 @@
 <template>
   <div class="box visible">
-    <p><Strong>1</Strong> Selecionado</p>
-    <button @click="teste">Comfirmar Presente</button>
+    <p>
+      <Strong>{{ item.length }}</Strong> Selecionado
+    </p>
+    <button @click="handleChangeModal">Confirmar Presente</button>
   </div>
+  <modal :visible="refValue" />
 </template>
 
 <script lang="ts" setup>
+import modal from '@/components/modal/index.vue'
+import { ref } from 'vue'
 
-let nome = 'evanilson'
+const refValue = ref<boolean>(false)
+defineProps({
+  item: {
+    type: Array,
+    required: true,
+  },
+})
 
-const teste = () => {
-  nome = 'teste123'
+const handleChangeModal = () => {
+  console.log(refValue.value)
+  refValue.value = !refValue.value
+  console.log(refValue.value)
 }
-
 </script>
 
 <style scoped>
 .box {
   background-color: #4ec76b;
   width: 98%;
-  margin: 0 1%;
-  height: 90px;
+  margin: 0 1% 1%;
+  height: 57px;
   position: fixed;
   bottom: 0%;
   z-index: 0;
   visibility: collapse;
   transition: 0.1s ease-in-out;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;

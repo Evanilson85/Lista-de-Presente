@@ -1,13 +1,12 @@
 <template>
   <Header />
-  {{ list.length }}
   <main class="container">
     <Instructions />
     <Box />
     <RouterView />
   </main>
   <transition name="fade">
-    <BoxConfirm v-if="list.length > 0" />
+    <BoxConfirm v-if="list.length > 0" :item="list" />
   </transition>
 </template>
 
