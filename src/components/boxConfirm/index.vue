@@ -3,9 +3,8 @@
     <p>
       <Strong>{{ item.length }}</Strong> Selecionado
     </p>
-    <button @click="handleChangeModal">Confirmar Presente</button>
+    <modal />
   </div>
-  <modal :visible="refValue" />
 </template>
 
 <script lang="ts" setup>

@@ -3,10 +3,16 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 
-import PrimeVue from 'primevue/config'
-import 'primevue/resources/themes/saga-blue/theme.css' //theme
-import 'primevue/resources/primevue.min.css' //core CSS
-import 'primeicons/primeicons.css' //icons
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
+const vuetify = createVuetify({
+  components,
+  directives,
+})
+
 import './assets/main.css'
 
 import Toast from 'vue-toastification'
@@ -35,7 +41,7 @@ const app = createApp(App)
 
 app.use(router)
 app.use(store)
-app.use(PrimeVue)
+app.use(vuetify)
 app.use(Toast, options)
 
 app.mount('#app')

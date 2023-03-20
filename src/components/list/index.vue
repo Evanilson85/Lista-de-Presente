@@ -2,7 +2,7 @@
   <div class="containerList">
     <div class="dflex">
       <hr />
-      <h2>Eletrodomestico</h2>
+      <h2>{{ category }}</h2>
       <hr />
     </div>
     <section>
@@ -10,11 +10,12 @@
         v-for="{ id, name, active } in list"
         :key="id"
         :class="active ? 'selectGift success divSucess' : 'selectGift'"
-        @click="selectGift(id)"
+        @click="selectGift(id, active, name)"
       >
-        <p>{{ name }}</p>
+        <p :class="giftSelect ? 'selectDisabled' : ''">{{ name }}</p>
         <div class="giftIcon">
-          <GiftOpen class="svg" color="#85B6FF" v-if="!active" />
+          <GiftActive class="svg" color="#FF9900" v-if="giftSelect && active" />
+          <GiftOpen class="svg" color="#85B6FF" v-else-if="!giftSelect && !active" />
           <Gift class="svg" color="#FF9900" v-else />
         </div>
       </div>
@@ -23,11 +24,10 @@
 </template>
 
 <script lang="ts" setup>
-// import { Button } from 'primevue/button';
-// import Button from 'primevue/button'
 import { useToast } from 'vue-toastification'
 import GiftOpen from '../icones/giftOpen.vue'
 import Gift from '../icones/gift.vue'
+import GiftActive from '../icones/giftActive.vue'
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 
@@ -37,35 +37,57 @@ interface Itens {
   active: boolean
 }
 
+const props = defineProps({
+  category: {
+    type: [String, Number],
+    required: true,
+  },
+  list: {
+    type: Object,
+    required: true,
+  },
+  giftSelect: {
+    type: Boolean,
+    default: false,
+  },
+})
+
 const store = useStore()
 
-const list = ref<Itens[]>([
-  {
-    name: 'Tv',
-    id: 1,
-    active: false,
-  },
-  {
-    name: 'Celular',
-    id: 2,
-    active: false,
-  },
-  {
-    name: 'Geladeira',
-    id: 3,
-    active: false,
-  },
-  {
-    name: 'PC',
-    id: 4,
-    active: false,
-  },
-])
+// const list = ref<Itens[]>([
+//   {
+//     name: 'Tv',
+//     id: 1,
+//     active: false,
+//   },
+//   {
+//     name: 'Celular',
+//     id: 2,
+//     active: false,
+//   },
+//   {
+//     name: 'Geladeira',
+//     id: 3,
+//     active: false,
+//   },
+//   {
+//     name: 'PC',
+//     id: 4,
+//     active: false,
+//   },
+// ])
 
 const toast = useToast()
 
-const selectGift = (id: number) => {
-  const newList = list.value.map((item) => {
+const selectGift = (id: number, active: boolean, name: string) => {
+  if (props.giftSelect) {
+    toast.warning(`Ops! Alguem ja selecionou ${name}. `, {
+      timeout: 2000,
+    })
+    return
+  }
+
+  const newList = props.list.map((item: any) => {
     if (id == item.id) {
       item.active = !item.active
 
@@ -83,8 +105,6 @@ const selectGift = (id: number) => {
     }
     return item
   })
-
-  console.log(newList)
 }
 </script>
 
@@ -141,5 +161,9 @@ hr {
   height: 1px;
   border: none;
   background: #71a9dd;
+}
+
+.selectDisabled {
+  text-decoration: line-through;
 }
 </style>
