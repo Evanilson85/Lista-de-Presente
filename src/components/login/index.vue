@@ -9,13 +9,23 @@
           <input type='password' v-model="password" placeholder='Senha' class="input" />
 
           <button type="submit" class="button">Next</button>
-        
+          <!-- <atom-spinner
+          :animation-duration="1000"
+          :size="60"
+          :color="'#ff1d5e'"
+     /> -->
+     <HalfCircleSpinner
+    :animation-duration="1000"
+    :size="30"
+    color="#ff1d5e"
+  />
       </form>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { HalfCircleSpinner } from "epic-spinners"
 // import { auth } from '@/Firebase/index.js'
 // import LoadButton from '@/components/Loader/buttonLoad.vue'
 
