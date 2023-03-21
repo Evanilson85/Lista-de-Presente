@@ -5,40 +5,31 @@
       <h2>{{ category }}</h2>
       <hr />
     </div>
-    <section v-if="list.length > 0">
+    <section>
       <div
         v-for="{ id, name, active } in list"
         :key="id"
-        :class="active ? 'selectGift success divSucess' : 'selectGift'"
-        @click="selectGift(id, active, name)"
+        :class="active ? 'selectGift' : 'selectGift'"
       >
         <p :class="giftSelect ? 'selectDisabled' : ''">{{ name }}</p>
         <div class="giftIcon">
-          <GiftActive class="svg" color="#FF9900" v-if="giftSelect && active" />
+          <!-- <GiftActive class="svg" color="#FF9900" v-if="giftSelect && active" />
           <GiftOpen class="svg" color="#85B6FF" v-else-if="!giftSelect && !active" />
-          <Gift class="svg" color="#FF9900" v-else />
+          <Gift class="svg" color="#FF9900" v-else /> -->
+          <DeleteModal :name="name" :id="id" />
+          <!-- <v-btn @click="selectGift(id, active, name)" color="error" variant="flat">
+            Deletar
+          </v-btn> -->
         </div>
       </div>
     </section>
-    <div v-else>
-      <h2></h2>
-    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useToast } from 'vue-toastification'
-import GiftOpen from '../icones/giftOpen.vue'
-import Gift from '../icones/gift.vue'
-import GiftActive from '../icones/giftActive.vue'
-import { ref } from 'vue'
 import { useStore } from 'vuex'
-
-interface Itens {
-  name: string
-  id: number
-  active: boolean
-}
+import DeleteModal from './deleteModal.vue'
 
 const props = defineProps({
   category: {
@@ -57,32 +48,10 @@ const props = defineProps({
 
 const store = useStore()
 
-// const list = ref<Itens[]>([
-//   {
-//     name: 'Tv',
-//     id: 1,
-//     active: false,
-//   },
-//   {
-//     name: 'Celular',
-//     id: 2,
-//     active: false,
-//   },
-//   {
-//     name: 'Geladeira',
-//     id: 3,
-//     active: false,
-//   },
-//   {
-//     name: 'PC',
-//     id: 4,
-//     active: false,
-//   },
-// ])
-
 const toast = useToast()
 
 const selectGift = (id: number, active: boolean, name: string) => {
+  return
   if (props.giftSelect) {
     toast.warning(`Ops! Alguem ja selecionou ${name}. `, {
       timeout: 2000,

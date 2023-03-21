@@ -2,23 +2,28 @@
   <div class="header">
     <div class="containerHeader">
       <h1>Lista de Presente dos Noivos</h1>
-
-      <Burguer @changeMenu="changeMenuValue" />
+      <Burguer @changeMenu="changeMenuValue" v-if="tokenAuth" />
     </div>
   </div>
-  <Menu :open="valueCheckedMenu" />
+  <Menu v-model:open="valueCheckedMenu" @close="changeMenuValue" />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import Burguer from './burguer/index.vue'
 import Menu from './menu/index.vue'
+import { useStore } from 'vuex'
 
+const store = useStore()
 let valueCheckedMenu = ref(false)
 
 const changeMenuValue = (value: boolean) => {
   valueCheckedMenu.value = value
 }
+
+const tokenAuth = computed(() => {
+  return store.getters.getToken
+})
 </script>
 
 <style scoped>

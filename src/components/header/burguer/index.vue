@@ -17,6 +17,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+// defineProps({
+//   // checked: {}
+// })
+
 const checked = ref(false)
 </script>
 

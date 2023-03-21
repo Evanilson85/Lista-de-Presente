@@ -8,20 +8,27 @@
         <router-link tag="li" :to="{ name: 'About' }">
           <h3>About</h3>
         </router-link> -->
-        <li>
-          <h3>Presentes</h3>
+        <router-link class="li" to="/" @click="$emit('close', false)">
+          <h3>Home</h3>
 
           <div class="icon">
             <giftSvg color="#85B6FF" />
           </div>
-        </li>
-        <li>
+        </router-link>
+        <router-link class="li" to="/create">
+          <h3>Criar Presentes</h3>
+
+          <div class="icon">
+            <giftSvg color="#85B6FF" />
+          </div>
+        </router-link>
+        <li class="li">
           <h3>Pix</h3>
           <div class="icon">
             <pixSvg color="#85B6FF" />
           </div>
         </li>
-        <li>
+        <li class="li">
           <h3>Messagens</h3>
           <div class="icon">
             <messageSvg color="#85B6FF" />
@@ -69,7 +76,7 @@ defineProps({
 .menuContainer nav ul .menuDisplay {
   display: none;
 }
-.menuContainer nav ul li {
+.menuContainer nav ul .li {
   height: 50px;
   width: 100%;
   padding: 5px 30px;
@@ -83,16 +90,16 @@ defineProps({
   border-bottom: 1px solid #f4f8f7;
 }
 
-.menuContainer nav ul li .icon {
+.menuContainer nav ul .li .icon {
   width: 30px;
 }
 
-.menuContainer nav ul li h3 {
+.menuContainer nav ul .li h3 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
 }
-.menuContainer nav ul li:hover {
+.menuContainer nav ul .li:hover {
   background-color: var(--main);
   color: var(--colorWhite);
 }
@@ -119,15 +126,15 @@ defineProps({
   .menuContainer ul .menuDisplay {
     display: block !important;
   }
-  .menuContainer ul li {
+  .menuContainer ul .li {
     width: 100px !important;
     /* background: chartreuse;
 		 */
   }
-  .menuContainer ul li h3 {
+  .menuContainer ul .li h3 {
     color: var(--colorWhite);
   }
-  .menuContainer ul li h3:hover {
+  .menuContainer ul .li h3:hover {
     color: #ccc;
   }
 }

@@ -1,4 +1,6 @@
 <template>
+  <Instructions />
+  <Box />
   <main>
     <section class="headerList">
       <h2></h2>
@@ -6,7 +8,11 @@
         <FilterSvg color="#85B6FF" />
       </button> -->
     </section>
-    <div v-for="(item, index) in newValueList">
+    <v-container v-if="!newValueList" class="d-flex flex-column align-center justify-center">
+      <h2 class="textNotFound">Carregando lista de presentes</h2>
+      <spring-spinner :animation-duration="3000" :size="60" color="#ffff" />
+    </v-container>
+    <div v-else v-for="(item, index) in newValueList">
       <List :category="index" :list="item" />
     </div>
     <div>
@@ -16,8 +22,11 @@
 </template>
 
 <script setup lang="ts">
+import Box from '@/components/box/index.vue'
+import Instructions from '@/components/instructions/index.vue'
 import FilterSvg from '@/components/icones/filter.vue'
 import List from '@/components/list/index.vue'
+import { SpringSpinner } from 'epic-spinners'
 import { onMounted, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useToast } from 'vue-toastification'
@@ -30,16 +39,31 @@ interface TypeObjs {
 }
 
 const store = useStore()
-
-const list = computed(() => {
-  return store.getters.getAllList
-})
+const toast = useToast()
 
 const newValueList = ref<TypeObjs[]>([])
 const newValueListActive = ref<TypeObjs[]>([])
 
 onMounted(() => {
-  const lista = list.value.reduce((obj: any, { category, name, active, id }: TypeObjs) => {
+  listRequest()
+})
+
+const listRequest = async () => {
+  const req = store.dispatch('getList')
+  try {
+    const { data } = await req
+    convert(data)
+  } catch (error) {
+    toast.success('Ops algo deu errado, entre mais tarde', {
+      timeout: 2000,
+    })
+    console.log(error)
+  }
+}
+
+
+const convert = (dataItem: any) => {
+  const lista = dataItem.reduce((obj: any, { category, name, active, id }: TypeObjs) => {
     if (!obj[category]) obj[category] = []
     if (!active) {
       obj[category].push({ name, category, id, active })
@@ -48,9 +72,9 @@ onMounted(() => {
   }, {})
   newValueList.value = lista
 
-  const listaActive = list.value.filter((item: any) => item.active == true)
+  const listaActive = dataItem.filter((item: any) => item.active == true)
   newValueListActive.value = listaActive
-})
+}
 
 const teste = () => {
   const toast = useToast()
@@ -65,6 +89,13 @@ const teste = () => {
 </script>
 
 <style scoped>
+.textNotFound {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 20px 0;
+  /* font-size: 1rem; */
+  color: #71a9dd;
+}
 .main {
   /* background-color: var(--colorWhite); */
 }

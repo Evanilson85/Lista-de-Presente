@@ -1,9 +1,6 @@
 <template>
   <Header v-if="$route.meta.login" />
-
   <main class="container" v-if="$route.meta.login">
-    <Instructions />
-    <Box />
     <RouterView />
   </main>
   <RouterView v-else />
@@ -15,21 +12,21 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Header from '@/components/header/index.vue'
-import Box from '@/components/box/index.vue'
-import Instructions from '@/components/instructions/index.vue'
 import BoxConfirm from '@/components/boxConfirm/index.vue'
-import { ref } from 'vue'
-
-const visibilityCP = ref(false)
 
 const store = useStore()
 
 const list = computed(() => {
   return store.getters.getListCheck
 })
+
+const tokenLocal = localStorage.getItem('Token')
+
+if (tokenLocal) {
+  store.commit('setToken', tokenLocal)
+}
 </script>
 
 <style scoped>
