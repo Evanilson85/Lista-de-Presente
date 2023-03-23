@@ -37,6 +37,7 @@ interface TypeObjs {
   name: string
   check: boolean
   id: number | string
+  length: any
 }
 
 const store = useStore()

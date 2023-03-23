@@ -37,7 +37,7 @@ const propsItem = defineProps({
   },
 })
 
-const deleteItem =async (paramsId: string) => {
+const deleteItem =async (paramsId: any) => {
   
   try {
     const result = await store.dispatch('deleteGift', paramsId)
