@@ -22,12 +22,12 @@
             <giftSvg color="#85B6FF" />
           </div>
         </router-link>
-        <li class="li">
+        <router-link to="https://nubank.com.br/pagar/9ds7/O2Pnm3t8bO" class="li">
           <h3>Pix</h3>
           <div class="icon">
             <pixSvg color="#85B6FF" />
           </div>
-        </li>
+        </router-link>
         <li class="li">
           <h3>Messagens</h3>
           <div class="icon">

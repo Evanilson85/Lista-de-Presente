@@ -5,7 +5,7 @@
       <Burguer @changeMenu="changeMenuValue" v-if="tokenAuth" />
     </div>
   </div>
-  <Menu v-model:open="valueCheckedMenu" @close="changeMenuValue" />
+  <Menu v-if="tokenAuth" v-model:open="valueCheckedMenu" @close="changeMenuValue" />
 </template>
 
 <script setup lang="ts">

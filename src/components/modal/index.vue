@@ -70,7 +70,7 @@ const sendUpdate = async (value: any) => {
       category: '',
       sendRequestEmail: true,
       message: value.message,
-      nameUser: `${value.name} nos presentiou com ${item.name}`,
+      nameUser: `${value.name} nos presenteou com ${item.name}`,
       hideDisplay: false,
     }
 

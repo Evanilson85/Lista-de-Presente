@@ -1,12 +1,14 @@
 <template>
   <Header v-if="$route.meta.login" />
-  <main class="container" v-if="$route.meta.login">
-    <RouterView />
-  </main>
-  <RouterView v-else />
-  <transition name="fade">
-    <BoxConfirm v-if="list.length > 0" :item="list" />
-  </transition>
+  <div class="app">
+    <main class="container" v-if="$route.meta.login">
+      <RouterView />
+    </main>
+    <RouterView v-else />
+    <transition name="fade" class="app">
+      <BoxConfirm  v-if="list.length > 0" :item="list" />
+    </transition>
+  </div>
 </template>
 
 <script setup lang="ts">

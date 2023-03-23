@@ -29,6 +29,8 @@ const changeItens = (value: string): any => {
     itemGift.classList.add('active')
     itemPix.classList.remove('active')
   } else {
+    const urlPix = 'https://nubank.com.br/pagar/9ds7/O2Pnm3t8bO'
+    window.open(urlPix)
     itemPix.classList.add('active')
     itemGift.classList.remove('active')
   }
@@ -55,7 +57,7 @@ const changeItens = (value: string): any => {
 
   width: 30%;
   height: 50px;
-
+  cursor: pointer;
   background: var(--colorWhite);
   color: var(--main);
   border: 1px solid;
