@@ -7,15 +7,15 @@
     </div>
     <section v-if="list.length > 0">
       <div
-        v-for="{ id, name, active } in list"
+        v-for="{ id, name, check } in list"
         :key="id"
-        :class="active ? 'selectGift success divSucess' : 'selectGift'"
-        @click="selectGift(id, active, name)"
+        :class="check ? 'selectGift success divSucess' : 'selectGift'"
+        @click="selectGift(id, check, name)"
       >
         <p :class="giftSelect ? 'selectDisabled' : ''">{{ name }}</p>
         <div class="giftIcon">
-          <GiftActive class="svg" color="#FF9900" v-if="giftSelect && active" />
-          <GiftOpen class="svg" color="#85B6FF" v-else-if="!giftSelect && !active" />
+          <GiftActive class="svg" color="#FF9900" v-if="giftSelect && check" />
+          <GiftOpen class="svg" color="#85B6FF" v-else-if="!giftSelect && !check" />
           <Gift class="svg" color="#FF9900" v-else />
         </div>
       </div>
@@ -37,7 +37,7 @@ import { useStore } from 'vuex'
 interface Itens {
   name: string
   id: number
-  active: boolean
+  check: boolean
 }
 
 const props = defineProps({
@@ -82,7 +82,7 @@ const store = useStore()
 
 const toast = useToast()
 
-const selectGift = (id: number, active: boolean, name: string) => {
+const selectGift = (id: number, check: boolean, name: string) => {
   if (props.giftSelect) {
     toast.warning(`Ops! Alguem ja selecionou ${name}. `, {
       timeout: 2000,
@@ -92,11 +92,11 @@ const selectGift = (id: number, active: boolean, name: string) => {
 
   const newList = props.list.map((item: any) => {
     if (id == item.id) {
-      item.active = !item.active
+      item.check = !item.check
 
       const filter = store.getters.getListCheck.filter((element: any) => element.id !== item.id)
 
-      if (item.active) {
+      if (item.check) {
         toast.success(`${item.name} selecionado`, {
           timeout: 2000,
         })

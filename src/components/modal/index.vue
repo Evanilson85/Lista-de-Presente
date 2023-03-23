@@ -13,8 +13,17 @@
           </ul>
         </v-card-title>
         <v-card-text>
-          <p class="message">Se quiser pode enviar para os noivos uma messagem 😊😁</p>
-          <FormModal @closeModal="closeModal" />
+          <half-circle-spinner
+            v-if="load"
+            :animation-duration="2000"
+            :size="70"
+            color="#71a9dd"
+            class="mx-auto my-4"
+          />
+          <div v-else>
+            <p class="message">Se quiser pode enviar para os noivos uma messagem 😊😁</p>
+            <FormModal @closeModal="closeModal" @sendUpdate="sendUpdate" />
+          </div>
         </v-card-text>
         <!-- <v-card-actions>
           <v-spacer></v-spacer>
@@ -28,10 +37,12 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
+import { HalfCircleSpinner } from 'epic-spinners'
 import { useStore } from 'vuex'
 import FormModal from '@/components/form/formModal.vue'
 import ListIcon from '@/components/icones/list.vue'
 import Confirm from '@/components/icones/confirm.vue'
+import { useToast } from 'vue-toastification'
 
 const store = useStore()
 
@@ -39,9 +50,48 @@ const list = computed(() => {
   return store.getters.getListCheck
 })
 const dialog = ref(false)
+const load = ref(false)
+const toast = useToast()
 
 const closeModal = (value: boolean) => {
   dialog.value = value
+}
+
+const sendUpdate = async (value: any) => {
+  load.value = true
+
+  const newList = list.value.map((item: any) => {
+    const json = {
+      id: item.id,
+      name: item.name,
+      email: '',
+      check: true,
+      // "category": item.category,
+      category: '',
+      sendRequestEmail: true,
+      message: value.message,
+      nameUser: `${value.name} nos presentiou com ${item.name}`,
+      hideDisplay: false,
+    }
+
+    return json
+  })
+
+  try {
+    const result = await store.dispatch('updateListCheck', newList)
+    console.log(result)
+    load.value = false
+    closeModal(false)
+    store.commit('setListCheck', [])
+    toast.success(`Obrigado pelo presente `, {
+      timeout: 2000,
+    })
+  } catch (error) {
+    toast.error(`Ops! tente novamente`, {
+      timeout: 2000,
+    })
+    load.value = false
+  }
 }
 </script>
 

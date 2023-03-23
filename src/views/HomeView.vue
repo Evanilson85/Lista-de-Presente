@@ -8,15 +8,16 @@
         <FilterSvg color="#85B6FF" />
       </button> -->
     </section>
-    <v-container v-if="!newValueList" class="d-flex flex-column align-center justify-center">
+    <v-container v-if="show" class="d-flex flex-column align-center justify-center">
       <h2 class="textNotFound">Carregando lista de presentes</h2>
       <spring-spinner :animation-duration="3000" :size="60" color="#ffff" />
     </v-container>
     <div v-else v-for="(item, index) in newValueList">
-      <List :category="index" :list="item" />
+      <List v-if="item?.length > 0 " :category="index" :list="item" />
+        <!-- {{ item }} -->
     </div>
     <div>
-      <List category="Presente que vamos ganhar" :list="newValueListActive" :giftSelect="true" />
+      <List category="Presente que vamos ganhar" :list="newValueListcheck" :giftSelect="true" />
     </div>
   </main>
 </template>
@@ -27,14 +28,14 @@ import Instructions from '@/components/instructions/index.vue'
 import FilterSvg from '@/components/icones/filter.vue'
 import List from '@/components/list/index.vue'
 import { SpringSpinner } from 'epic-spinners'
-import { onMounted, computed, ref } from 'vue'
+import { onMounted, computed, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { useToast } from 'vue-toastification'
 
 interface TypeObjs {
   category: string
   name: string
-  active: boolean
+  check: boolean
   id: number | string
 }
 
@@ -42,9 +43,17 @@ const store = useStore()
 const toast = useToast()
 
 const newValueList = ref<TypeObjs[]>([])
-const newValueListActive = ref<TypeObjs[]>([])
+const newValueListcheck = ref<TypeObjs[]>([])
+const show = ref(true)
+const requestFail = ref(false)
+// const updatePage = store.getters.getUpadatePage
+
+const updatePage = computed(() => {
+  return store.getters.getUpadatePage
+})
 
 onMounted(() => {
+  // console.log(updatePage)
   listRequest()
 })
 
@@ -53,39 +62,46 @@ const listRequest = async () => {
   try {
     const { data } = await req
     convert(data)
+    show.value = false
+    requestFail.value = false
   } catch (error) {
-    toast.success('Ops algo deu errado, entre mais tarde', {
+    toast.warning('Ops algo deu errado, aguarde a conexão', {
       timeout: 2000,
     })
-    console.log(error)
+    requestFail.value = true
+    // console.log(error)
   }
 }
 
-
 const convert = (dataItem: any) => {
-  const lista = dataItem.reduce((obj: any, { category, name, active, id }: TypeObjs) => {
+  const lista = dataItem.reduce((obj: any, { category, name, check, id }: TypeObjs) => {
     if (!obj[category]) obj[category] = []
-    if (!active) {
-      obj[category].push({ name, category, id, active })
+    if (!check) {
+      obj[category].push({ name, category, id, check })
     }
     return obj
   }, {})
   newValueList.value = lista
 
-  const listaActive = dataItem.filter((item: any) => item.active == true)
-  newValueListActive.value = listaActive
+  const listacheck = dataItem.filter((item: any) => item.check == true)
+  newValueListcheck.value = listacheck
 }
 
-const teste = () => {
-  const toast = useToast()
+watch(requestFail, (item) => {
+  let interVal = setInterval(() => {
+    if (!show.value) return
+    listRequest()
+  }, 3000)
 
-  // Use it!
+  if (!item) {
+    clearInterval(interVal)
+  }
+})
 
-  // or with options
-  toast.success('My toast content', {
-    timeout: 2000,
-  })
-}
+watch(updatePage, item => {
+  listRequest()
+})
+
 </script>
 
 <style scoped>

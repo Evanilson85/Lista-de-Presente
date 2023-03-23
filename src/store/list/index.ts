@@ -6,6 +6,7 @@ export const list = {
     token: '',
     user: {},
     allList: [],
+    updatePage: new Date(),
     // allList: [
     //   {
     //     id: '6418ae298448c0f835295c52',
@@ -71,6 +72,9 @@ export const list = {
     setUser(state: { user: string }, newValue: string) {
       return (state.user = newValue)
     },
+    setUpdatePage(state: { updatePage: any }, newValue: any) {
+      return (state.updatePage = newValue)
+    },
   },
   actions: {
     login({ commit }: any, jsonLogin: any) {
@@ -91,12 +95,36 @@ export const list = {
       })
     },
     createGift({ getters }: any, data: any) {
-      console.log(getters.getToken)
       return new Promise<any>((resolve, reject) => {
         api
           .post('/list', data, { headers: { Authorization: `bearer ${getters.getToken}` } })
           .then((res) => {
             resolve(res)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    deleteGift({ getters }: any, id: any) {
+      return new Promise<any>((resolve, reject) => {
+        api
+          .delete(`/list/${id}`, { headers: { Authorization: `bearer ${getters.getToken}` } })
+          .then((res) => {
+            resolve(res)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    updateListCheck({ commit }: any, data: any) {
+      return new Promise<any>((resolve, reject) => {
+        api
+          .post('/list/update', data)
+          .then((res) => {
+            resolve(res)
+            commit('setUpdatePage', new Date())
           })
           .catch((err) => {
             reject(err)
@@ -133,6 +161,9 @@ export const list = {
     },
     getUser(state: { user: Object }) {
       return state.user
+    },
+    getUpadatePage(state: { updatePage: any }) {
+      return state.updatePage
     },
   },
 }

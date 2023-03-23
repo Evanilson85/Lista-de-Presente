@@ -19,7 +19,7 @@
       <v-btn class="me-4" type="submit" color="green-darken-1" variant="text"> Criar </v-btn>
     </v-row>
   </form>
-  <spring-spinner :animation-duration="2000" :size="60" color="#F44336" /> dasd
+  <spring-spinner :animation-duration="2000" :size="60" color="#F44336" />
 </template>
 
 <script lang="ts">
@@ -31,7 +31,6 @@ import { useToast } from 'vue-toastification'
 
 export default {
   setup() {
-
     const store = useStore()
     const toast = useToast()
 
@@ -53,20 +52,29 @@ export default {
     const name = useField('name')
     const select = useField('category')
 
-    const items = ref(['Casa', 'Banheiro', 'Cozinha', 'Eletrodomésticos', 'Quarto', 'Sala', 'Lavanderia', 'Móveis', 'Outros'])
+    const items = ref([
+      'Casa',
+      'Banheiro',
+      'Cozinha',
+      'Eletrodomésticos',
+      'Quarto',
+      'Sala',
+      'Lavanderia',
+      'Móveis',
+      'Outros',
+    ])
 
     const submit = handleSubmit((values) => {
-    
-    const { name, category } = values
-    const json = {
-      "name": name,
-      "email": "",
-      "check": false,
-      "category": category,
-      "sendRequestEmail": false  
-    }
+      const { name, category } = values
+      const json = {
+        name: name,
+        email: '',
+        check: false,
+        category: category,
+        sendRequestEmail: false,
+      }
 
-    create(json)
+      create(json)
       // alert(JSON.stringify(values, null, 2))
     })
 

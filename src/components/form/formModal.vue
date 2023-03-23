@@ -10,6 +10,7 @@
 
     <v-textarea
       bg-color="#f4f8f7"
+      v-model="message.value.value"
       color="#71a9dd"
       label="Digite a sua Mesagem ( Opcional )"
     ></v-textarea>
@@ -26,7 +27,7 @@ import { ref, defineEmits } from 'vue'
 import { useField, useForm } from 'vee-validate'
 // const emit = defineEmits(['inFocus', 'submit', 'closeModal'])
 export default {
-  emits: ['inFocus', 'submit', 'closeModal'],
+  emits: ['inFocus', 'submit', 'closeModal', 'sendUpdate'],
   setup(props, ctx) {
     const { handleSubmit, handleReset } = useForm({
       validationSchema: {
@@ -35,10 +36,14 @@ export default {
 
           return 'Nome obrigatorio'
         },
+        message(value = '') {
+          return true
+        },
       },
     })
 
     const name = useField('name')
+    const message = useField('message')
 
     const items = ref(['Item 1', 'Item 2', 'Item 3', 'Item 4'])
 
@@ -48,10 +53,11 @@ export default {
 
     const submit = handleSubmit((values: any) => {
       // alert(JSON.stringify(values, null, 2))
-      close()
+      ctx.emit('sendUpdate', values)
+      // close()
     })
 
-    return { name, items, submit, handleReset, close }
+    return { name, items, submit, handleReset, close, message }
   },
 }
 </script>
