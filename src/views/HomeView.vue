@@ -17,7 +17,7 @@
         <!-- {{ item }} -->
     </div>
     <div>
-      <List category="Presente já selecionados" :list="newValueListcheck" :giftSelect="true" />
+      <List category="Presente já selecionado" :list="newValueListcheck" :giftSelect="true" />
     </div>
   </main>
 </template>
