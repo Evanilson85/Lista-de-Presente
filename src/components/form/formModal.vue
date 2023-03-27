@@ -12,7 +12,7 @@
       bg-color="#f4f8f7"
       v-model="message.value.value"
       color="#71a9dd"
-      label="Digite a sua Mesagem ( Opcional )"
+      label="Digite a sua Mensagem ( Opcional )"
     ></v-textarea>
     <v-card-actions>
       <v-spacer></v-spacer>
