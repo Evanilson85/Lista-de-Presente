@@ -4,12 +4,12 @@
     <!-- <h5>Bem vindo a nossa lista de presentes de casamento</h5> -->
     <br>
     <p>
-      Você pode escolher um ou mais itens da lista de presentes, para escolher basta clicar no item desejado e ele será marcado (se clicar novamente no item ele é desmarcado), depois de escolher você clica no botão de <strong>Confirmar Presente</strong> (que vai aparecer na sua tela na parte inferior uma caixa verde com o botão), será solicitado o seu nome e uma messagem para nós (por favor insira o seu numero de telefone na messagem por que vamos ler e responder a sua messagem agradencendo o seu presente)! Depois de preencher esses dados é só clicar em <strong>Confirmar</strong> que os dados serão salvos, depois de enviar os dados só é possivel mudar sua escolha de presente se contatar um dos noivos. Os itens estão por categoria.
+      Você pode escolher um ou mais itens da lista de presentes, para escolher basta clicar no item desejado e ele será marcado (se clicar novamente no item ele é desmarcado), após escolher você clica no botão de <strong>Confirmar Presente</strong>(que vai aparecer na sua tela na parte inferior uma caixa verde com o botão), será solicitado o seu nome e uma mensagem para nós (por favor insira o seu número de telefone na mensagem por que vamos ler e responder a sua mensagem agradecendo o seu presente)! Após preencher esses dados é só clicar em <strong>Confirmar</strong> que os dados serão salvos, após enviar os dados só é possível mudar sua escolha de presente se contatar um dos noivos. Os itens estão por categoria.
       <br />
-      <p>Se desejar pode fazer um pix para nós (Pode ser de qualquer valor), é só clicar no botão abaixo <strong>PIX</strong> que você será redirecionado para as informações do pix de transferencia.</p>
+      <p>Se desejar pode fazer um pix para nós (Pode ser de qualquer valor), é só clicar no botão abaixo <strong>PIX</strong> que você será redirecionado para as informações do pix de transferência.</p>
       <strong></strong>
       <br />
-      <p>Você pode entregar pessoalmente ou na nossa casa ou enviar para o nosso endereço 😊</p>
+      <p>Você pode entregar pessoalmente ou na nossa casa, ou enviar para o nosso endereço😊</p>
       <br />
 
       <p>Endereço para entrega:</p> <strong>Rua São Vicente, 107, Rio Grande, Diamantina, Minas Gerais, 39100-000</strong>
