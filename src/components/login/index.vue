@@ -22,8 +22,10 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { useToast } from 'vue-toastification'
 
-const email = ref<string>('evanilson@gmail.com')
-const password = ref<string>('teste')
+const email = ref<string>('')
+const password = ref<string>('')
+// const email = ref<string>('evanilson@gmail.com')
+// const password = ref<string>('teste')
 const load = ref<boolean>(false)
 const router = useRouter()
 const store = useStore()
