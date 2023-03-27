@@ -1,8 +1,8 @@
 <template>
   <div class="containerBox">
-    <div class="boxContainer active" ref="gift" @click="changeItens('gift')">
+    <!-- <div class="boxContainer active" ref="gift" @click="changeItens('gift')">
       Presente <giftSVG class="svg" :color="valueCurrentActive === 'gift' ? '#fff' : '#85B6FF'" />
-    </div>
+    </div> -->
     <div class="boxContainer" ref="pix" @click="changeItens('pix')">
       PIX <pixSVG :color="valueCurrentActive === 'pix' ? '#fff' : '#4ECB71'" class="svg" />
     </div>
@@ -61,6 +61,12 @@ const changeItens = (value: string): any => {
   background: var(--colorWhite);
   color: var(--main);
   border: 1px solid;
+  transition: .1s ease-in-out;
+}
+
+.boxContainer:hover {
+  background-color: var(--main);
+  color: var(--colorWhite);
 }
 
 .active {

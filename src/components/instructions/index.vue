@@ -1,16 +1,18 @@
 <template>
   <div class="containerInstruction">
-    <h2>Instruções</h2>
+    <h2>Bem vindo a nossa lista de presentes de casamento</h2>
+    <!-- <h5>Bem vindo a nossa lista de presentes de casamento</h5> -->
+    <br>
     <p>
-      Mussum Ipsum, cacilds vidis litro abertis. Quem num gosta di mé, boa gentis num é.Si num tem
-      leite então bota uma pinga aí cumpadi!Em pé sem cair, deitado sem dormir, sentado sem cochilar
-      e fazendo pose.Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate
-      dapibus.
-      <strong>dasdada</strong>
+      Você pode escolher um ou mais itens da lista de presentes, para escolher basta clicar no item desejado e ele será marcado (se clicar novamente no item ele é desmarcado), depois de escolher você clica no botão de <strong>Confirmar Presente</strong> (que vai aparecer na sua tela na parte inferior uma caixa verde com o botão), será solicitado o seu nome e uma messagem para nós (por favor insira o seu numero de telefone na messagem por que vamos ler e responder a sua messagem agradencendo o seu presente)! Depois de preencher esses dados é só clicar em <strong>Confirmar</strong> que os dados serão salvos, depois de enviar os dados só é possivel mudar sua escolha de presente se contatar um dos noivos. Os itens estão por categoria.
       <br />
+      <p>Se desejar pode fazer um pix para nós (Pode ser de qualquer valor), é só clicar no botão abaixo <strong>PIX</strong> que você será redirecionado para as informações do pix de transferencia.</p>
+      <strong></strong>
       <br />
-      A ordem dos tratores não altera o pão duris.Copo furadis é disculpa de bebadis, arcu quam
-      euismod magna.Manduma pindureta quium dia nois paga.Quem num gosta di mé, boa gentis num é.
+      <p>Você pode entregar pessoalmente ou na nossa casa ou enviar para o nosso endereço 😊</p>
+      <br />
+
+      <p>Endereço para entrega:</p> <strong>Rua São Vicente, 107, Rio Grande, Diamantina, Minas Gerais, 39100-000</strong>
     </p>
   </div>
 </template>

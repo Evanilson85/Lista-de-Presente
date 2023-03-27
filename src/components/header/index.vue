@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="containerHeader">
-      <h1>Lista de Presente dos Noivos</h1>
+      <h1>Lista de Presentes de Casamento do Evanilson e Laura</h1>
       <Burguer @changeMenu="changeMenuValue" v-if="tokenAuth" />
     </div>
   </div>
@@ -45,5 +45,6 @@ const tokenAuth = computed(() => {
 .header h1 {
   font-size: 1.2rem;
   color: var(--colorWhite);
+  text-align: center;
 }
 </style>

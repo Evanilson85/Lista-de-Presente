@@ -9,7 +9,7 @@
       </button> -->
     </section>
     <v-container v-if="show" class="d-flex flex-column align-center justify-center">
-      <h2 class="textNotFound">Carregando lista de presentes</h2>
+      <h2 class="textNotFound">Carregando lista de presentes aguarde um pouco ...</h2>
       <spring-spinner :animation-duration="3000" :size="60" color="#ffff" />
     </v-container>
     <div v-else v-for="(item, index) in newValueList">
@@ -17,7 +17,7 @@
         <!-- {{ item }} -->
     </div>
     <div>
-      <List category="Presente que vamos ganhar" :list="newValueListcheck" :giftSelect="true" />
+      <List category="Presente já selecionados" :list="newValueListcheck" :giftSelect="true" />
     </div>
   </main>
 </template>
