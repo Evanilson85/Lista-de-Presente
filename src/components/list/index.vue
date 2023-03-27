@@ -84,7 +84,7 @@ const toast = useToast()
 
 const selectGift = (id: number, check: boolean, name: string) => {
   if (props.giftSelect) {
-    toast.warning(`Ops! Alguem ja selecionou ${name}. `, {
+    toast.warning(`Ops! Alguém já selecionou ${name}. `, {
       timeout: 2000,
     })
     return

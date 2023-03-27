@@ -4,7 +4,7 @@
     <v-dialog v-model="dialog" width="800">
       <v-card>
         <v-card-title>
-          <span class="text-h5 title" justify="center">Presente selecionados</span>
+          <span class="text-h5 title" justify="center">Presente selecionado</span>
 
           <ul class="list">
             <li class="listItem" v-for="{ id, name } in list" :key="id">
@@ -21,7 +21,7 @@
             class="mx-auto my-4"
           />
           <div v-else>
-            <p class="message">Se quiser pode enviar para os noivos uma messagem 😊😁</p>
+            <p class="message">Se quiser pode enviar para os noivos uma mensagem 😊😁</p>
             <FormModal @closeModal="closeModal" @sendUpdate="sendUpdate" />
           </div>
         </v-card-text>
