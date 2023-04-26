@@ -1,6 +1,7 @@
 <template>
   <div class="containerInstruction">
-    <h2>Bem vindo a nossa lista de presentes de casamento</h2>
+    <h2>Bem vindo a nossa lista de sugestões de presentes de casamento</h2>
+    <p>*Essa lista não está vinculada com nenhuma loja, é apenas uma lista de sugestão de presentes.</p>
     <!-- <h5>Bem vindo a nossa lista de presentes de casamento</h5> -->
     <br>
     <p>
